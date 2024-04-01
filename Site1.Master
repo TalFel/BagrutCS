@@ -1,0 +1,91 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="bitcointry.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>cryptocurrency</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: black;
+            background-image: url('images/Background.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed; 
+            background-size: 100% 100%;
+        }
+        .topnav{
+            text-align: center;
+            margin-left:auto; 
+            margin-right:auto;
+            overflow: hidden;
+            background-color: black;
+        }
+        .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+        .topnav a:hover{
+            transform: scale(1.1);
+            background-image: linear-gradient(
+                to bottom right,
+            #4affde 0%, #5b9dff 40%, #0000cc 60%, #0099ff 100%
+            );
+            background-size: 200% 200%;
+            animation: movingGradiant 5s linear infinite alternate;
+            border-radius: 10px;
+        }
+        @keyframes movingGradiant{
+            from {background-position: 0 0;}
+            to{background-position: 100% 100%;}
+        }
+        .topnav a:active {
+            background-color: blue;
+            transition: all ease-in-out 400ms;
+        }
+    </style>
+</head>
+<body>
+    <div style="top: 400px; height:62px; background-color: #FFFFFF; overflow:hidden; box-sizing: border-box; border: 1px solid #56667F; border-radius: 4px; text-align: right; line-height:14px; block-size:38px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #56667F;padding:1px;padding: 0px; margin: 0px; width: 100%;">
+        <div style="height:40px; padding:0px; margin:0px; width: 100%;">
+            <iframe src="https://widget.coinlib.io/widget?type=horizontal_v2&theme=light&pref_coin_id=1505&invert_hover=" width="100%" height="36px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;"></iframe>
+        </div>
+    </div>
+    <div class="topnav">
+        <a id="hom" style="margin-left: 20%;" href="Home.aspx">Home</a>
+        <a id="how" href="HowDoesItWork.aspx">How it Works</a>
+        <a id="his" href="History.aspx">History</a>
+        <a id="fut" href="Future.aspx">Future</a>
+        <a id="abo" href="Aboutme.aspx">About Me</a>
+        <%if (Session["username"] != null)
+            {%>   <a id="out" style="float:right; margin-right:20%;" href="Logout.aspx">Log out</a>
+                <%if (Session["username"].ToString() == "admin")
+                    {%><a id="adm" style="float:right;" href="admin.aspx">admin</a><%}
+          }
+          else{ %>
+        <a id="sin" style="float:right; margin-right:20%;" href="Signin.aspx">Sign in</a>
+        <a id="sup" style="float:right;" href="Signup.aspx">Sign up</a>
+        <%} %>
+        <%if (Session["username"] != null)
+            {
+                if (Session["username"].ToString() != "admin")
+                {
+                    %>
+        <a id="pro" href="Profile.aspx">Profile</a>
+        <%}
+            }%>
+        
+    </div>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+    </asp:ContentPlaceHolder>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+    </asp:ContentPlaceHolder>
+</body>
+</html>
